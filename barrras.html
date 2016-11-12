@@ -31,11 +31,25 @@ var svg = d3.select("body")
  .attr("width",200)
   .attr("height",200);
 
-svg.selectAll('rect').data(datos).enter().append('rect')
+var losR = svg.selectAll('rect').data(datos).enter().append('rect')
    .attr("width", function(d,i) {return ancho(d.seguidores)   }  )
    .attr("height",90)
    .attr("y", function(d,i) {return i*100}  );
 
+  losR.transition()
+  .duration(1000)
+  .attr("fill",function(d,i) {return d.color; })
+  .attr("width", function(d,i) {return ancho(d.seguidores) });
+  
+  
+  svg.selectAll('text').data(datos).enter().append('text')
+  .attr("fill","white")
+  .attr("font-size",40)
+  .attr("text-align","right")
+   .attr("width", function(d,i) {return ancho(d.seguidores)   }  )
+   .attr("x",90)
+   .attr("y", function(d,i) {return i*100}  )
+  .text;
 </script>  
   
 </body>
